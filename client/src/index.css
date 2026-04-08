@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: #faf9f7;
+  color: #1a1a1a;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+}
+
+::selection {
+  background-color: #c45d3e;
+  color: white;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #faf9f7;
+}
+::-webkit-scrollbar-thumb {
+  background: #d1cdc6;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a3a3a3;
+}
+
+@layer components {
+  .card {
+    @apply bg-white border border-border rounded-card shadow-card;
+  }
+  .card-interactive {
+    @apply card transition-shadow duration-200 hover:shadow-card-hover hover:border-border-hover;
+  }
+  .btn-primary {
+    @apply bg-accent text-white font-medium rounded-card px-5 py-2.5
+           transition-all duration-200 hover:bg-accent-hover
+           active:scale-[0.97] disabled:opacity-40 disabled:cursor-not-allowed
+           disabled:hover:bg-accent text-sm;
+  }
+  .btn-secondary {
+    @apply bg-transparent border border-border text-ink font-medium rounded-card px-5 py-2.5
+           transition-all duration-200 hover:bg-bg-alt hover:border-border-hover
+           active:scale-[0.97] text-sm;
+  }
+  .btn-danger {
+    @apply bg-danger-light text-danger font-medium rounded-card px-4 py-2
+           transition-all duration-200 hover:bg-danger hover:text-white
+           active:scale-[0.97] text-sm border border-transparent;
+  }
+  .btn-ghost {
+    @apply bg-transparent text-ink-light font-medium rounded-card px-4 py-2
+           transition-all duration-200 hover:bg-bg-alt hover:text-ink
+           active:scale-[0.97] text-sm;
+  }
+  .input-field {
+    @apply w-full bg-white border border-border rounded-card px-3.5 py-2.5
+           text-ink text-sm placeholder-ink-faint
+           transition-all duration-200
+           focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/10;
+  }
+  .badge {
+    @apply inline-block text-xs font-medium px-2 py-0.5 rounded-full;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideRight {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
+}
+@keyframes slideRightOut {
+  from { transform: translateX(0); }
+  to   { transform: translateX(100%); }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.anim-fade    { animation: fadeIn 0.2s ease-out; }
+.anim-up      { animation: slideUp 0.3s ease-out; }
+.anim-scale   { animation: scaleIn 0.2s ease-out; }
+.cart-enter    { animation: slideRight 0.25s ease-out forwards; }
+.cart-exit     { animation: slideRightOut 0.2s ease-in forwards; }
